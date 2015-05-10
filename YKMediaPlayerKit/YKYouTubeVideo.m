@@ -79,7 +79,9 @@
     }
     
     if (!strURL && self.videos.count > 0) {
-        strURL = [self.videos allValues][0]; //defaults to 1st index
+        NSMutableDictionary * filtered_videos = [[NSMutableDictionary alloc] initWithDictionary:self.videos];
+        [filtered_videos removeObjectForKey:@"moreInfo"];
+        strURL = [filtered_videos allValues][0]; //defaults to 1st index
     }
     
     return strURL ? [NSURL URLWithString:strURL] : nil;
